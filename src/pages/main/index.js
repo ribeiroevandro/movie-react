@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
+import SearchButton from '../../components/search-button'
 import './style.css'
 
 class Main extends Component{
 
-    state = {
-        movies: [],
+    constructor(props){
+        super(props);
+        this.state = {
+            movies: [],
+        }
+    
     }
 
     componentDidMount(){
         this.loadMovies();
     }
 
-  loadMovies = async () => {
-    const res = await api.get("sem");
+  loadMovies = async searchField => {
+    const res = await api.get(searchField);
     console.log(res.data)
     this.setState({movies: res.data});
+    console.log(searchField)
 
 }
 
@@ -24,15 +30,16 @@ class Main extends Component{
 
            <section className="movie-list">
                <div className="container">
-               {this.state.movies.map(movie => (
+               <SearchButton onSubmit={this.loadMovies}></SearchButton>
+               {this.state.movies.map(movie => movie.show.image ?
                    <div key={movie.show.id} className="movie">
                         <figure className="wrap-image">
-                            <img src={movie.show.image.medium} alt="Photo movie" title="Photo movie"/>
+                            <img src={movie.show.image.medium} alt="Pic movie" title="Pic movie"/>
                         </figure>
                         <span className="genre">{movie.show.genres}</span>
                         <h1 className="movie-title">{movie.show.name}</h1>
-                   </div>
-               ))}
+                   </div>:null
+               )}
                                   
                 </div>
            </section>
