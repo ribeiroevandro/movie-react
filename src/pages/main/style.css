@@ -37,7 +37,22 @@ figure.wrap-image img {
     text-shadow: 2px 2px 5px #333;
 }
 
+.movie > span {
+    font-size: 12px;
+    padding: 2px 10px;
+    position: relative;
+    top: 7px;
+}
 
+.fav{
+    background: tomato;
+    font-weight: 900;
+    text-shadow: 1px 1px 0px #00000061;
+}
+
+.unFav{
+    background: gray;
+}
 
 @media screen and (max-width: 890px){
     .movie {

@@ -7,7 +7,7 @@ class SearchButton extends Component{
         super(props);
 
         this.state = {
-            searchField: "",
+            searchField: "beer",
         }
 
         this.searchMovie = this.searchMovie.bind(this);
@@ -15,7 +15,6 @@ class SearchButton extends Component{
     }
 
     search(event){
-        console.log("clck")
         event.preventDefault();
         this.props.onSubmit(this.state.searchField);
     }
