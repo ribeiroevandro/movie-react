@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
-import SearchButton from '../../components/search-button'
+import SearchButton from '../../components/search-button';
+import { Link } from 'react-router-dom';
 import './style.css'
 
 class Main extends Component{
@@ -18,7 +19,7 @@ class Main extends Component{
     }
 
   loadMovies = async searchField => {
-    const res = await api.get(searchField);
+    const res = await api.get(`search/shows?q=${searchField}`);
     console.log(res.data)
     this.setState({movies: res.data});
     console.log(searchField)
@@ -33,11 +34,18 @@ class Main extends Component{
                <SearchButton onSubmit={this.loadMovies}></SearchButton>
                {this.state.movies.map(movie => movie.show.image ?
                    <div key={movie.show.id} className="movie">
-                        <figure className="wrap-image">
-                            <img src={movie.show.image.medium} alt="Pic movie" title="Pic movie"/>
-                        </figure>
-                        <span className="genre">{movie.show.genres}</span>
-                        <h1 className="movie-title">{movie.show.name}</h1>
+                       <Link className="movie-link" to={`/shows/${movie.show.id}`}>
+                            <figure className="wrap-image">
+                                <img src={movie.show.image.medium} alt="Pic movie" title="Pic movie"/>
+                            </figure>
+                            <div className="wrap-description">
+                                <small>{movie.show.genres.map((genre,i) => (
+                                    <span key={i} className="genre">{genre}</span>
+                                ))}
+                                </small>
+                                <h1 className="movie-title">{movie.show.name}</h1>
+                            </div>
+                        </Link>
                    </div>:null
                )}
                                   

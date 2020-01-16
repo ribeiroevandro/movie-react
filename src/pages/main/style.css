@@ -8,11 +8,19 @@
     cursor: pointer;
 }
 
-span.genre {
+.movie-link{
+    text-decoration: none;
+}
+
+.genre {
     color: #fafafa;
+    display: inline-block;
     padding: 2px;
     font-size: 12px;
     border-radius: 1px;
+    margin-bottom: 3px;
+    background: #212121;
+    margin-right: 2px;
 }
 
 figure.wrap-image img {
@@ -22,9 +30,14 @@ figure.wrap-image img {
 }
 
 .movie-title{
-    font-size: 16px;
+    font-size: 1.1em;
     line-height: 1;
+    color: #fafafa;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px #333;
 }
+
+
 
 @media screen and (max-width: 890px){
     .movie {
@@ -50,6 +63,20 @@ figure.wrap-image img {
 @media screen and (max-width: 380px){
     .movie {
         width: calc(100%/1);
+    }
+
+    .wrap-description {
+        padding: 20px 5px;
+        background: #ffa500db;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+    
+    .movie-link {
+        text-decoration: none;
+        position: relative;
+        display: block;
     }
 
 }

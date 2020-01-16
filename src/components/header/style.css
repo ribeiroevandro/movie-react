@@ -4,6 +4,29 @@
     justify-content: center;
     align-items: center;
     height: 60px;
-    color: #fafafa;
     box-shadow: 2px 2px 10px #0003;
+    
+}
+
+.logo-movie{
+    color: #fff;
+    text-decoration: none;
+    transition: .5s;
+
+}
+
+h1{
+    transition: .5s;
+}
+
+h1:hover .logo-movie{
+    color: orange;
+    
+}
+
+span.before-logo {
+    background: orange;
+    padding: 5px;
+    margin: 0 5px;
+    color: #fafafa;
 }

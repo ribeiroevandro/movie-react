@@ -1,0 +1,55 @@
+.single-movie {
+    display: flex;
+    padding: 50px;
+}
+
+.single-movie-title {
+    font-size: 2.5em;
+    line-height: 1;
+    color: #fafafa;
+    font-weight: bold;
+}
+
+h1.single-movie-title:after {
+    content: "";
+    background: orange;
+    height: 2px;
+    width: 10%;
+    display: block;
+    margin: 5px 5px 0 0;
+}
+
+.movie-genres {
+    background: orange;
+    padding: 2px 4px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    color: #222;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.release-date{
+    margin: 10px 10px 0 0;
+    display: inline-block;
+}
+
+aside {
+    flex: .5;
+}
+
+.movie-poster img{
+    width: 100%;
+    box-shadow: 10px 10px 10px #0003;
+}
+
+.movie-description {
+    flex: 1;
+    padding: 0 30px;
+}
+
+article{
+    padding: 20px 0;
+}
