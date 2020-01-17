@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
+import RelatedMovies from '../../components/related-movies'
 import dayjs from "dayjs";
 
 import './style.css';
@@ -9,7 +10,7 @@ class Movie extends Component{
         super(props);
 
         this.state = {
-            movie: "",
+            movie: [],
         }
 
         this.loadMovie = this.loadMovie.bind(this);
@@ -34,32 +35,30 @@ class Movie extends Component{
         const { id } = this.props.match.params;
         const movieFav = JSON.parse(localStorage.getItem('movies'));
         const response = await api.get(`shows/${id}`);
-
+        console.log(movieFav);
         movieFav.map(movieIN => {
-            if (movieIN.show.isFavorite == true){
+            console.log("show");
+            console.log(movieIN.show);
+            console.log("data");
+            console.log(response.data);
+            if (movieIN.show.id === response.data.id){
                 console.log("entrou!")
-                this.setState({movie: movieIN.show}); 
-                
-            }else{
-                this.setState({movie: response.data});
-                console.log("n entrou");
-                
+                this.setState({movie: movieIN.show});         
             }
-
           });
     };
 
     render(){
         const {movie} = this.state;
         const premiered = dayjs(movie.premiered);
+        console.log(movie)
         return(
-            <section className="movie-datail">
+            
+            <section className="movie-detail">
                 <div className="container">
                     {movie.image ? 
                     <div className="single-movie">
-                        <aside>
-                            
-                            
+                        <aside> 
                             <span 
                                 className={movie.isFavorite ? "fav" :  "unFav" }
                                 onClick={() => this.handleFavorite(movie.id)}>Favorito
@@ -80,7 +79,10 @@ class Movie extends Component{
                     </div>
                     :null}
                 </div>
-            </section>
+                <RelatedMovies></RelatedMovies>
+                {        
+                <div>{movie.id}</div>}
+            </section>  
         )
     }
 }

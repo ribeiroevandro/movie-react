@@ -48,6 +48,8 @@ class Main extends Component{
 
     loadMovies = async searchField => {
         const res = await api.get(`search/shows?q=${searchField}`);
+        console.log("essa bosta")
+        console.log(searchField);
             this.setState({movies: res.data});
         
     }
@@ -79,8 +81,7 @@ class Main extends Component{
                             </div>
                         </Link>
                    </div>:null
-               )}
-                                  
+               )}                    
                 </div>
            </section>
         )         
