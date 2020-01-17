@@ -16,38 +16,41 @@ class Main extends Component{
 
     componentDidMount(){
         this.loadMovies();
-
-        if (localStorage.getItem('movies')) {
+        const movieFav = localStorage.getItem('movies');
+        if (movieFav) {
             this.setState({
-              movies: JSON.parse(localStorage.getItem('movies'))
+              movies: JSON.parse(movieFav)
             });
             return;
           }
+
+          console.log("teste");
+          console.log(this.state.movies)
     }
 
     handleFavorite = id => {
         const favoritedMovies = this.state.movies.map(movie => {
-          if (movie.show.id === id) movie.isFavorite = !movie.isFavorite;
+          if (movie.show.id === id ) movie.show.isFavorite = !movie.show.isFavorite;
           return movie;
         });
         this.setState({
           movies: favoritedMovies
         });
+
+        console.log(this.state.movies);
+        localStorage.setItem('movies', JSON.stringify(this.state.movies));
       };
 
-      componentWillUnmount() {
+    componentWillUnmount() {
         localStorage.setItem('movies', JSON.stringify(this.state.movies));
-      }
+    }
 
 
-  loadMovies = async searchField => {
-    const res = await api.get(`search/shows?q=${searchField}`);
-    console.log(res.data)
-    this.setState({movies: res.data});
-    console.log(searchField)
-
-}
-
+    loadMovies = async searchField => {
+        const res = await api.get(`search/shows?q=${searchField}`);
+            this.setState({movies: res.data});
+        
+    }
 
     render(){
 
@@ -60,7 +63,7 @@ class Main extends Component{
                {this.state.movies.map(movie => movie.show.image ?
                    <div key={movie.show.id} className="movie">
                         <span 
-                            className={movie.isFavorite ? "fav" :  "unFav" }
+                            className={movie.show.isFavorite ? "fav" :  "unFav" }
                             onClick={() => this.handleFavorite(movie.show.id)}>Favorito
                         </span>
                        <Link className="movie-link" to={`/shows/${movie.show.id}`}>

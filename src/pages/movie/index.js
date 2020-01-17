@@ -17,14 +17,36 @@ class Movie extends Component{
 
     componentDidMount(){
         this.loadMovie();
+
     }
+
+    handleFavorite = id => {
+        const favoritedMovie = this.state.movie;
+
+        if (favoritedMovie.id === id) favoritedMovie.isFavorite = !favoritedMovie.isFavorite;
+
+        this.setState({
+          movie: favoritedMovie
+        });
+      };
 
     loadMovie = async () => {
         const { id } = this.props.match.params;
+        const movieFav = JSON.parse(localStorage.getItem('movies'));
         const response = await api.get(`shows/${id}`);
 
-        this.setState({movie: response.data});
-        console.log(response.data);
+        movieFav.map(movieIN => {
+            if (movieIN.show.isFavorite == true){
+                console.log("entrou!")
+                this.setState({movie: movieIN.show}); 
+                
+            }else{
+                this.setState({movie: response.data});
+                console.log("n entrou");
+                
+            }
+
+          });
     };
 
     render(){
@@ -36,6 +58,12 @@ class Movie extends Component{
                     {movie.image ? 
                     <div className="single-movie">
                         <aside>
+                            
+                            
+                            <span 
+                                className={movie.isFavorite ? "fav" :  "unFav" }
+                                onClick={() => this.handleFavorite(movie.id)}>Favorito
+                            </span>
                             <figure className="movie-poster">
                                 <img src={movie.image.original} alt=""/>
                             </figure>
