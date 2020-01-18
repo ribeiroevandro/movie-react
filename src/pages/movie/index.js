@@ -10,10 +10,17 @@ class Movie extends Component{
         super(props);
 
         this.state = {
-            movie: [],
+            movie: "",
+            related: []
+    
         }
 
-        this.loadMovie = this.loadMovie.bind(this);
+    this.loadMovie = this.loadMovie.bind(this);
+    }
+
+    componentWillMount(){
+        const movieFav = JSON.parse(localStorage.getItem('movies'));
+        this.setState({related: movieFav})
     }
 
     componentDidMount(){
@@ -25,33 +32,30 @@ class Movie extends Component{
         const favoritedMovie = this.state.movie;
 
         if (favoritedMovie.id === id) favoritedMovie.isFavorite = !favoritedMovie.isFavorite;
-
-        this.setState({
-          movie: favoritedMovie
-        });
       };
 
     loadMovie = async () => {
+        
         const { id } = this.props.match.params;
         const movieFav = JSON.parse(localStorage.getItem('movies'));
         const response = await api.get(`shows/${id}`);
-        console.log(movieFav);
         movieFav.map(movieIN => {
-            console.log("show");
-            console.log(movieIN.show);
-            console.log("data");
-            console.log(response.data);
             if (movieIN.show.id === response.data.id){
-                console.log("entrou!")
-                this.setState({movie: movieIN.show});         
+                this.setState({movie: movieIN.show}); 
+
             }
           });
+
+          
     };
 
     render(){
         const {movie} = this.state;
         const premiered = dayjs(movie.premiered);
-        console.log(movie)
+
+        console.log("lllll")
+        console.log(this.state.related)
+
         return(
             
             <section className="movie-detail">
@@ -79,9 +83,7 @@ class Movie extends Component{
                     </div>
                     :null}
                 </div>
-                <RelatedMovies></RelatedMovies>
-                {        
-                <div>{movie.id}</div>}
+                <RelatedMovies related={this.state.related} ></RelatedMovies>
             </section>  
         )
     }

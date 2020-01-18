@@ -7,11 +7,16 @@ class SearchButton extends Component{
         super(props);
 
         this.state = {
-            searchField: "beer",
+            searchField: "",
+            fo: "d"
         }
 
-        this.searchMovie = this.searchMovie.bind(this);
+        this.setMovie = this.setMovie.bind(this);
         this.search = this.search.bind(this);
+    }
+
+    componentDidMount(){
+       
     }
 
     search(event){
@@ -19,18 +24,19 @@ class SearchButton extends Component{
         this.props.onSubmit(this.state.searchField);
     }
 
-    searchMovie(e){
+    setMovie(e){
         let movie = e.target.value;
         this.setState({searchField: movie});
     }
  
     render(){
+
         return(
         <section className="search-button">
             <div className="container">
                 <div className="search-wrap">
                     <form onSubmit = {this.search}>
-                        <input type="text" name="search-field" id="search-field" onChange = {this.searchMovie} value={this.state.searchField} 
+                        <input type="text" name="search-field" id="search-field" onChange = {this.setMovie} value={this.state.searchField} 
                         />
                         <input type="submit" className="search-btn" value="Buscar"/>
                     </form>

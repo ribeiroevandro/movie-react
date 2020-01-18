@@ -1,38 +1,33 @@
 import React, {Component} from 'react';
-import api from '../../services/api'
-import SearchButton from '../search-button'
 
 class RelatedMovies extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            relateds: [],
+            relateds: this.props.related,
+            
         }
-        
-        this.loadRelated = this.loadRelated.bind(this);
-    }
 
+    }
 
     componentDidMount(){
-        this.loadRelated();
-    };
-
-    loadRelated = async searchField => {
-    const response = await api.get(`search/shows?q=${searchField}`);
-    console.log(searchField);
-    console.log("RESPONSE")
-    console.log(response.data);
-
+        console.log("opa")
+        console.log(this.state.relateds)
     }
 
+
     render(){
+        const { relateds } = this.state;
         return(
             <div className="related-movies">
                 <div className="container">
-                    <div className="wrap-related">
-                        <h1>TESTE</h1>
+                   {relateds.map((rel) => 
+                    <div key={rel.show.id}>
+                        <span>{rel.show.name}</span>
                     </div>
+                   )}
+                         
                 </div>
             </div>
         )

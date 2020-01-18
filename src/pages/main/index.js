@@ -23,9 +23,6 @@ class Main extends Component{
             });
             return;
           }
-
-          console.log("teste");
-          console.log(this.state.movies)
     }
 
     handleFavorite = id => {
@@ -48,8 +45,6 @@ class Main extends Component{
 
     loadMovies = async searchField => {
         const res = await api.get(`search/shows?q=${searchField}`);
-        console.log("essa bosta")
-        console.log(searchField);
             this.setState({movies: res.data});
         
     }
