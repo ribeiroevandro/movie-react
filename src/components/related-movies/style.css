@@ -1,0 +1,35 @@
+.rel-movie{
+    width: 200px;
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: top;
+    padding-bottom: 50px;
+}
+
+.related-movies h3{
+    padding: 20px 0;
+
+}
+
+.related-movies h3:after {
+    content: "";
+    background: orange;
+    height: 2px;
+    width: 10%;
+    display: block;
+    margin: 5px 5px 0 0;
+}
+
+article a {
+    box-shadow: 14px 9px 15px #ffa50014;
+    background: orange;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 20px 0;
+    color: #fafafa;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 1s;
+}

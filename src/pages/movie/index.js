@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
 import RelatedMovies from '../../components/related-movies'
+import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 
 import './style.css';
@@ -11,8 +12,7 @@ class Movie extends Component{
 
         this.state = {
             movie: "",
-            related: []
-    
+            related: []   
         }
 
     this.loadMovie = this.loadMovie.bind(this);
@@ -44,17 +44,12 @@ class Movie extends Component{
                 this.setState({movie: movieIN.show}); 
 
             }
-          });
-
-          
+          });      
     };
 
     render(){
         const {movie} = this.state;
         const premiered = dayjs(movie.premiered);
-
-        console.log("lllll")
-        console.log(this.state.related)
 
         return(
             
@@ -78,6 +73,7 @@ class Movie extends Component{
                             ))}</small>
                             <article>
                                 <p className="full-description" dangerouslySetInnerHTML= {{__html: movie.summary}}></p>
+                                <Link to="/">Voltar para a listagem</Link>
                             </article>
                         </div>
                     </div>

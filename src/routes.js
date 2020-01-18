@@ -13,7 +13,6 @@ const Routes = () => (
             <Route exact path="/" component={Main}></Route>
             <Route path="/shows/:id" component={Movie}></Route>
         </Switch>
-        <Footer></Footer>
     </BrowserRouter>
 ) 
 
