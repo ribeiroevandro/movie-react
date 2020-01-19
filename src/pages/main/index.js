@@ -29,6 +29,7 @@ class Main extends Component{
     handleFavorite = id => {
         const favoritedMovies = this.state.movies.map(movie => {
           if (movie.show.id === id ) movie.show.isFavorite = !movie.show.isFavorite;
+          return movie;
         });
         this.setState({
           movies: favoritedMovies
@@ -50,7 +51,6 @@ class Main extends Component{
     render(){
        const {filter} = this.state;
 
-
         if(filter === undefined || filter == ""){
             return(
                 <section className="empty-page"> 
@@ -62,7 +62,7 @@ class Main extends Component{
             )
         }else{
             return(
-
+                
                 <section className="movie-list">
                     <div className="container">
                     <SearchButton onSubmit={this.loadMovies}></SearchButton>
