@@ -29,7 +29,6 @@ class Main extends Component{
     handleFavorite = id => {
         const favoritedMovies = this.state.movies.map(movie => {
           if (movie.show.id === id ) movie.show.isFavorite = !movie.show.isFavorite;
-          return movie;
         });
         this.setState({
           movies: favoritedMovies
@@ -45,14 +44,11 @@ class Main extends Component{
         const res = await api.get(`search/shows?q=${searchField}`);
         this.setState({filter: searchField})
             this.setState({movies: res.data});
-            console.log("meus filmes")
-          console.log(this.state.movies);
         
     }
 
     render(){
        const {filter} = this.state;
-        console.log(this.state.filter)
 
 
         if(filter === undefined || filter == ""){
