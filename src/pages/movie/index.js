@@ -32,7 +32,10 @@ class Movie extends Component{
         const favoritedMovie = this.state.movie;
 
         if (favoritedMovie.id === id) favoritedMovie.isFavorite = !favoritedMovie.isFavorite;
-      };
+        this.setState({
+            movies: favoritedMovie
+          });
+      }
 
     loadMovie = async () => {
         
@@ -58,11 +61,11 @@ class Movie extends Component{
                     {movie.image ? 
                     <div className="single-movie">
                         <aside> 
-                            <span 
-                                className={movie.isFavorite ? "fav" :  "unFav" }
-                                onClick={() => this.handleFavorite(movie.id)}>Favorito
-                            </span>
                             <figure className="movie-poster">
+                                <span 
+                                    className={movie.isFavorite ? "fav" :  "unFav" }
+                                    onClick={() => this.handleFavorite(movie.id)}>Favorito
+                                </span>
                                 <img src={movie.image.original} alt=""/>
                             </figure>
                         </aside>
@@ -73,7 +76,7 @@ class Movie extends Component{
                             ))}</small>
                             <article>
                                 <p className="full-description" dangerouslySetInnerHTML= {{__html: movie.summary}}></p>
-                                <Link to="/">Voltar para a listagem</Link>
+                                <Link to="/">Voltar para a busca</Link>
                             </article>
                         </div>
                     </div>

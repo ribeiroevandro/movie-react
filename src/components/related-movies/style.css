@@ -1,9 +1,13 @@
-.rel-movie{
-    width: 200px;
+.rel-movie {
     display: inline-block;
     margin-right: 20px;
     vertical-align: top;
     padding-bottom: 50px;
+    width: calc(100%/7);
+}
+
+.rel-movie h2{
+    font-size: 100%;
 }
 
 .related-movies h3{
@@ -32,4 +36,46 @@ article a {
     font-weight: 600;
     font-size: 14px;
     transition: 1s;
+}
+
+@media screen and (max-width: 890px){
+    .rel-movie {
+        width: calc(100%/4);
+    }
+
+}
+
+@media screen and (max-width: 690px){
+    .rel-movie {
+        width: calc(100%/3);
+    }
+
+}
+
+@media screen and (max-width: 520px){
+    .rel-movie {
+        width: calc(100%/2);
+    }
+
+}
+
+@media screen and (max-width: 380px){
+    .rel-movie {
+        width: calc(100%/1);
+    }
+
+    .wrap-description {
+        padding: 20px 5px;
+        background: #ffa500db;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+    
+    .movie-link {
+        text-decoration: none;
+        position: relative;
+        display: block;
+    }
+
 }

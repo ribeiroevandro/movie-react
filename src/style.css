@@ -17,3 +17,21 @@ html, body{
     margin: 0 auto;
     
 }
+
+section{
+    min-height: calc(100vh - 200px);
+}
+
+img{
+    width: 100%;
+}
+
+.movie-link{
+    text-decoration: none;
+    color: #fafafa;
+
+}
+
+.movie-link figure > span{
+    z-index: 1;
+}

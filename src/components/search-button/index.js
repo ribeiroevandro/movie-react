@@ -32,8 +32,7 @@ class SearchButton extends Component{
     render(){
 
         return(
-        <section className="search-button">
-            <div className="container">
+        <div className="search-button">
                 <div className="search-wrap">
                     <form onSubmit = {this.search}>
                         <input type="text" name="search-field" id="search-field" onChange = {this.setMovie} value={this.state.searchField} 
@@ -41,8 +40,7 @@ class SearchButton extends Component{
                         <input type="submit" className="search-btn" value="Buscar"/>
                     </form>
                 </div>
-            </div>
-        </section>
+        </div>
         )
     }
 }
